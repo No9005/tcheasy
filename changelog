@@ -1,0 +1,7 @@
+v.0.0.0: project init & basic functionality. See changelog.
+    - general: created the project and added basic functionality.
+               Unittests are written.
+               There are still examples missing (--> tcheasy dict
+               & sorpa).
+               Version will be .0.1.0 as soon as all examples are
+               added and final checks where made.

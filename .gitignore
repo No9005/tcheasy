@@ -1,0 +1,12 @@
+.venv
+.env
+__pycache__
+tcheasy.egg
+tcheasy.egg-info
+Pipfile
+Pipfile.lock
+pyproject.toml
+
+# deprecated stuff
+type_checking_old.py
+test_play.py
