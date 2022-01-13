@@ -1,8 +1,14 @@
 from distutils.core import setup
 from distutils import util
 from pathlib import Path
+import sys
 
 if __name__ == "__main__":
+    
+    # check python version
+    if not ((sys.version_info[0] >= 3) and (sys.version_info[1] >= 8)): 
+        sys.exit("tcheasy needs at least python version 3.8!") 
+    
     # package paths
     tcheasyPath = util.convert_path("tcheasy")
 
@@ -22,11 +28,10 @@ if __name__ == "__main__":
         author="Daniel Kiermeier",
         author_email="d.kiermeier@layers-of-life.com",
         url="https://github.com/No9005/tcheasy",
-        download_url="",
+        download_url="https://github.com/No9005/tcheasy/archive/refs/tags/v.1.0.0.tar.gz",
         license="MIT",
         package_dir={
             "tcheasy":tcheasyPath
         },
-        packages=["tcheasy"],
-        python_reqires='>3.8.5'
+        packages=["tcheasy"]
     )
