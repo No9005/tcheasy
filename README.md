@@ -1,4 +1,4 @@
-<img src="examples/img/mr-tcheasy.png" alt="Mr. Tcheasy!" style="height:100%;">
+<img src="examples/img/mr-tcheasy.png" alt="Mr. Tcheasy!" style="width:90%;">
 <p style="color:gray"><small><small><em><a href='https://de.freepik.com/vektoren/design'>Checkout - freepik - </a> the photographer of Mr. Tcheasy & Sorpa!</em></small></small></p>
 
 <br>
