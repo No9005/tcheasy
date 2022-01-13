@@ -20,11 +20,16 @@ if __name__ == "__main__":
     with open(str(versionPath)) as ver_file:
         exec(ver_file.read(), main_ns)
 
+    # get long description
+    longDescription = (Path().cwd() / "README.md").read_text()
+
     # running setup
     setup(
         name="tcheasy",
         version=main_ns['__version__'],
         description="A python decorator which checks types & restrictions for user inputs",
+        long_description=longDescription,
+        long_description_content_type="text/markdown",
         author="Daniel Kiermeier",
         author_email="d.kiermeier@layers-of-life.com",
         url="https://github.com/No9005/tcheasy",

@@ -1,4 +1,4 @@
-<img src="examples/img/mr-tcheasy.png" alt="Mr. Tcheasy!" style="width:90%;">
+<img src="https://user-images.githubusercontent.com/52833906/149335767-4caee5aa-7362-4f52-ab90-0772a9fc1507.png" alt="It's Mr. Tcheasy!" style="width:90%;">
 <p style="color:gray"><small><small><em><a href='https://de.freepik.com/vektoren/design'>Checkout - freepik - </a> the photographer of Mr. Tcheasy & Sorpa!</em></small></small></p>
 
 <br>
@@ -193,7 +193,7 @@ In the near future, the package will also be available in **pypi**. So stay tune
 
 **Mr. Tcheasy** comes packed with his friend **Sorpa**!
 
-<img src="examples/img/sorpa.png" alt="Mr. Tcheasy!" style="width:60%;">
+<img src="https://user-images.githubusercontent.com/52833906/149335771-cf8fd80b-aacb-49a9-9776-e16874cc016f.png" alt="Sorpa ~" style="width:60%;">
 
 <br>
 
