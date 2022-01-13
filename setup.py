@@ -21,6 +21,8 @@ if __name__ == "__main__":
         description="A python decorator which checks types & restrictions for user inputs",
         author="Daniel Kiermeier",
         author_email="d.kiermeier@layers-of-life.com",
+        url="https://github.com/No9005/tcheasy",
+        download_url="",
         license="MIT",
         package_dir={
             "tcheasy":tcheasyPath

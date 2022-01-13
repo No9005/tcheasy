@@ -5,8 +5,8 @@ tcheasy.egg
 tcheasy.egg-info
 Pipfile
 Pipfile.lock
-pyproject.toml
 .ipynb_checkpoints
+.pypirc
 
 # deprecated stuff
 type_checking_old.py
