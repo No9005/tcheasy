@@ -247,4 +247,4 @@ In the near future, the package will also be available in **pypi**. So stay tune
 # <a name='examples'></a> EXAMPLES? <sub><sub>[Back to top](#top)</sub></sub> 
 
 To get some examples, please check out the **examples** directory. <br>
-There you will find examples for tcheasy's & and his frind Sorpa's usecases.
+There you will find examples for Mr. Tcheasy's & and his friend Sorpa's usecases.
