@@ -1,6 +1,8 @@
-v.0.0.1: Added examples & README changes.
+v.1.0.0: tcheasy v1!... and Abfahrt!
 
 ------ old versions ---------------------------------------------
+v.0.0.1: Added examples & README changes.
+
 v.0.0.0: project init & basic functionality. See changelog.
     - general: created the project and added basic functionality.
                Unittests are written.

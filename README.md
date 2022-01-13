@@ -1,33 +1,29 @@
+<img src="examples/img/mr-tcheasy.png" alt="Mr. Tcheasy!" style="height:100%;">
+<p style="color:gray"><small><small><em><a href='https://de.freepik.com/vektoren/design'>Checkout - freepik - </a> the photographer of Mr. Tcheasy & Sorpa!</em></small></small></p>
+
+<br>
+<br>
+<br>
 
 
 # tcheasy
-<img src="tcheasy/img/its-tcheasy.jpg" alt="Mr. Tcheasy!" style="width:22%; margin-right:5%; float:left;"> 
-
-<br>
-<br>
-
-<p style="background: gray;"> <br> <em>Look over here! It's Mr. Tcheasy!</em> <br> </p>
-
-<br>
 
 **tcheasy** is a python decorator that makes type checking (at runtime) easy! <br>
-Just import the decorator and start **functino input checks** from the get-go. <br>
+Just import the decorator and start **to check your function inputs** from the get-go. <br>
 You want to define **input restrictions** as well? Then your are in the right place! <br>
 
-<p style="color:gray"> <em> Python >= 3.8 needed. Tested for { 3.8.5, } </em> <p>
+<p style="color:gray"> <em> Python >= 3.8 needed. Tested ver. { 3.8.5, 3.9.9 } </em> <p>
 
-<br>
-<br>
-<br>
-<p style="color:gray"><small><small><em><a href='https://de.freepik.com/vektoren/design'>Checkout - freepik - </a> the photographer of Mr. Tcheasy!</em></small></small></p>
 <br>
 <br>
 
 ## <a name="top"></a> CONTENT
 1. [why?](#whats-it)
 2. [how?](#how)
-3. [install?](#install)
-4. [examples?](#examples)
+4. [install?](#install)
+4. [where is Sorpa?](#sorpa)
+5. [examples?](#examples)
+ 
 
 <br>
 
@@ -94,6 +90,8 @@ But the true might comes from using *declarative dicts*. <br>
 By passing a dict to `@tcheasy()` you can specify the parameter types, add rudimentary input restrictions & default values. <br>
 The structure of these dictionaries (and their used keywords) is always the same (`type`, `restriction` (optional) & `default` (optional)):
 
+<br>
+
 ```python
 # define the dict!
 
@@ -118,13 +116,15 @@ to_check = {
 
 ```
 
+<br>
+
 As you can see, you have the complete control over potential `*args` and `**kwargs`.
 The definition structure of 'kwargs' is also the same as for the `positional`s. <br>
 Keep in mind that you do not have to define `restriction` and/or `default`. These two keywords are completely optional.
 
 <br>
 
-After you have defined the `dict` you can pass it to `@tcheasy()` and it will starts to monitor the function at runtime (e.g. if your `dict` is called **to_check**, then you pass it like this: `@tcheasy(to_check)`).
+After you have defined the `dict` you can pass it to `@tcheasy()` and it will start to monitor the function at runtime (e.g. if your `dict` is called **to_check**, then you pass it like this: `@tcheasy(to_check)`).
 
 <br>
 
@@ -140,7 +140,7 @@ After you have defined the `dict` you can pass it to `@tcheasy()` and it will st
 
 <br>
 
-The structure of the `default` keyword is as mentioned always the same. For example consider the following:
+The structure of the `default` keyword is  - as mentioned - always the same. For example consider the following:
 
 <br>
 
@@ -168,7 +168,39 @@ If you want further examples, please refere to the [examples?](#examples) sectio
 
 <br>
 
-One minor note to the usage of the `sorpa()` function. <br>
+# <a name='install'></a> INSTALL? <sub><sub>[Back to top](#top)</sub></sub> 
+
+Currently the package is only available over github (this repo).
+Just `git clone` it and run 
+
+<br>
+
+```terminal
+$ pip install 'path-to-your-clone'
+```
+
+<br>
+
+If you want to tinker with your code, run the pip install with `-e`. <br>
+
+<br>
+
+In the near future, the package will also be available in **pypi**. So stay tuned!
+
+<br>
+
+# <a name='sorpa'></a> SORPA? <sub><sub>[Back to top](#top)</sub></sub> 
+
+**Mr. Tcheasy** comes packed with his friend **Sorpa**!
+
+<img src="examples/img/sorpa.png" alt="Mr. Tcheasy!" style="width:60%;">
+
+<br>
+
+`sorpa()` is a python function which shows you the passed parameters, names, declartions and hints of your targeted python function at runtime. <br>
+
+<br>
+
 The import is as easy as the import for **tcheasy**. Just:
 
 <br>
@@ -207,6 +239,7 @@ def test_function(a:int, b:str, c:float = .1) -> dict:
 ```
 
 <br>
+
 Now we can call the function with some arguments (e.g. `test_function(5, b="some-string")`) and get as a return the following:
 
 <br>
@@ -223,28 +256,7 @@ Now we can call the function with some arguments (e.g. `test_function(5, b="some
 
 <br>
 
-# <a name='install'></a> INSTALL? <sub><sub>[Back to top](#top)</sub></sub> 
-
-Currently the package is only available over github (this repo).
-Just `git clone` it and run 
-
-<br>
-
-```terminal
-$ pip install 'path-to-your-clone'
-```
-
-<br>
-
-If you want to tinker with your code, run the pip install with `-e`. <br>
-
-<br>
-
-In the near future, the package will also be available in **pypi**. So stay tuned!
-
-<br>
-
 # <a name='examples'></a> EXAMPLES? <sub><sub>[Back to top](#top)</sub></sub> 
 
 To get some examples, please check out the **examples** directory. <br>
-There you will find examples for Mr. Tcheasy's & and his friend Sorpa's usecases.
+There you will find examples for **Mr. Tcheasy's** & and his friend **Sorpa's** usecases.

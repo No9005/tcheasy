@@ -7,7 +7,6 @@ Pipfile
 Pipfile.lock
 pyproject.toml
 .ipynb_checkpoints
-/examples/.ipynb_checkpoints
 
 # deprecated stuff
 type_checking_old.py
