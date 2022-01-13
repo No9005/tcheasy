@@ -1,5 +1,5 @@
 <img src="https://user-images.githubusercontent.com/52833906/149335767-4caee5aa-7362-4f52-ab90-0772a9fc1507.png" alt="It's Mr. Tcheasy!" style="width:90%;">
-<p style="color:gray"><small><small><em><a href='https://de.freepik.com/vektoren/design'>Checkout - freepik - </a> the photographer of Mr. Tcheasy & Sorpa!</em></small></small></p>
+<p style="color:gray"><em><a href='https://de.freepik.com/vektoren/design'>Checkout - freepik - </a> the photographer of Mr. Tcheasy & Sorpa!</em></p>
 
 <br>
 <br>
