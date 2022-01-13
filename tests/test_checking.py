@@ -14,7 +14,23 @@ class TestTypeChecking(unittest.TestCase):
     
     methods:
     --------
-    
+    setUp
+    test_decoration_defintion
+        Tests the decorator definition
+    test_without
+        Tests a function without params
+    test_positional_defined
+        Tests a function with positionals
+    test_positional_defined_default
+        Tests a function with pos. & defaults
+    test_args
+        Tests a function with only *args
+    test_kwargs_variable
+        Tests a function with only **kwargs
+    test_mixed
+        Tests a function with mixed types
+    test_use_hints
+        Tests a function by using type hinting
     
     """
 

@@ -1,5 +1,5 @@
 """
-Unittests for the typeChecking decorator
+Unittests for the parameter sorting function
 
 """
 
@@ -14,8 +14,17 @@ class TestSortParameters(unittest.TestCase):
     
     methods:
     --------
-    
-    
+    setUp
+        Setup method
+    tearDown
+        Teardown method
+    test_only_positional
+        Tests sorting of positionals
+    test_only_args
+        Tests sorting for *args
+    test_mixed
+        Tests sorting of mixed types
+
     """
 
     #region 'setup & teardown' -------------------
