@@ -170,8 +170,18 @@ If you want further examples, please refere to the [examples?](#examples) sectio
 
 # <a name='install'></a> INSTALL? <sub><sub>[Back to top](#top)</sub></sub> 
 
-Currently the package is only available over github (this repo).
-Just `git clone` it and run 
+There are two ways to install **tcheasy**.<br>
+The easy way is to use pip: <br>
+
+<br>
+
+```terminal
+$ pip install tcheasy
+```
+
+<br>
+
+The other option is to `git clone` the project and then run: 
 
 <br>
 
@@ -183,9 +193,6 @@ $ pip install 'path-to-your-clone'
 
 If you want to tinker with your code, run the pip install with `-e`. <br>
 
-<br>
-
-In the near future, the package will also be available in **pypi**. So stay tuned!
 
 <br>
 
@@ -258,5 +265,5 @@ Now we can call the function with some arguments (e.g. `test_function(5, b="some
 
 # <a name='examples'></a> EXAMPLES? <sub><sub>[Back to top](#top)</sub></sub> 
 
-To get some examples, please check out the **examples** directory. <br>
+To get some examples, please check out the **[examples](https://github.com/No9005/tcheasy/tree/main/examples)** directory (on github). <br>
 There you will find examples for **Mr. Tcheasy's** & and his friend **Sorpa's** usecases.

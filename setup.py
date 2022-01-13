@@ -6,7 +6,7 @@ import sys
 if __name__ == "__main__":
     
     # check python version
-    if not ((sys.version_info[0] >= 3) and (sys.version_info[1] >= 8)): 
+    if not (sys.version_info[0] >= 3 and sys.version_info[1] >= 8): 
         sys.exit("tcheasy needs at least python version 3.8!") 
     
     # package paths
