@@ -96,7 +96,7 @@ The structure of these dictionaries (and their used keywords) is always the same
 # define the dict!
 
 to_check = {
-    'positionals':{
+    'positional':{
         'parameter-name':{
             'type': type,
             'restriction': "(optional) in the form: value condition",
