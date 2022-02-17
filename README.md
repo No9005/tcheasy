@@ -147,7 +147,7 @@ The structure of the `default` keyword is  - as mentioned - always the same. For
 ```python
 
 ...
-    "parameter-name": {
+    'parameter-name': {
         'type': int,
         'restriction':"value > 1"
     },
@@ -257,7 +257,8 @@ Now we can call the function with some arguments (e.g. `test_function(5, b="some
         'args':[],
         'kwargs':{},
         'hinting':{'a': <class 'int'>, 'b': <class 'str'>, 'c': <class 'float'>},
-        'declared': ['a', 'b', 'c']
+        'declared': ['a', 'b', 'c'],
+        'self':{'available':False, 'value':None}
    }
 ```
 

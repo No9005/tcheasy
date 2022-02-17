@@ -55,7 +55,7 @@ class TestTypeChecking(unittest.TestCase):
         
         """
 
-        #region 'to_check no dict'
+        #region 'to_check not a dict'
         """ should not work """
         
         toCheck = []
@@ -1923,6 +1923,161 @@ class TestTypeChecking(unittest.TestCase):
 
         #endregion
 
+        #region 'mixed (hint + declarator): test class method'
+        #region 'create elements'
+        # create to check
+        classCheck = {
+            'args':[
+                {
+                    'type':str
+                }
+            ],
+            'kwargs':{
+                'x':{
+                    'type':int,
+                },
+                'y':{
+                    'type':(int, type(None)),
+                    'default':5
+                },
+                'z':{
+                    'type':int,
+                    'default':5,
+                    'restriction':"value >= 4"
+                }
+            }
+            }
+
+        # build class
+        class TestCase:
+
+            @tcheasy(classCheck, debug=False)
+            def test_method(self, a, b:int, *args:float, **kwargs) -> dict:
+                """Mixed method with hints. """
+
+                return {'a':a, 'b':b, 'args':args, 'kwargs':kwargs}
+
+        # create test case
+        case = TestCase()
+
+        #endregion
+        
+        #region 'success'
+        result = case.test_method("a", 5, "theseAreArgs", x=10, y=None)
+        self.assertEqual(result, {
+            'a':"a", 
+            "b":5, 
+            'args':("theseAreArgs", ), 
+            'kwargs':{'x':10, 'y':None, 'z':5}
+            })
+
+        #endregion
+
+        #region '[A.2]: args wrong type'
+        result = case.test_method("a", 5, 555, x=10, y=None)
+        self.assertEqual(result['error'], "[A.2]: The '*args' parameter at position '0' needs to be a(n) str.")
+
+        #endregion
+
+        #region '[K.2]: b wrong type'
+        result = case.test_method("a", "b", 555, x=10, y=None)
+        self.assertEqual(result['error'], "[K.2]: The parameter 'b' needs to be a(n) int.")
+
+        #endregion
+
+        #region '[A.1]: args missing'
+        result = case.test_method("a", 15, x=10, y=None)
+        self.assertEqual(result['error'], "[A.1]: The '*args' parameter at position '0' is missing.")
+
+        #endregion
+
+        #region '[A.1]: b missing'
+        result = case.test_method("a", x=10, y=None)
+        self.assertEqual(result['error'], "[K.1]: The parameter 'b' is missing.")
+
+        #endregion
+
+        #endregion
+
+        #region 'only hints: test class method; with self.attribute'
+        """ 
+        This test checks if tcheasy handles self attributes correctly.
+        Therefore we add a 'init' method which adds a attribute.
+        This attribute gets returned in the class method 'test_method'.
+        
+        """
+        
+        #region 'create elements'
+        # build class
+        class TestCase:
+
+            def __init__(self):
+
+                self.attribute = 999
+
+            @tcheasy(debug=False)
+            def test_method(self:bool, a, b:int, *args:str, **kwargs) -> dict:
+                """Mixed method with hints. """
+
+                return {'a':a, 'b':b, 'args':args, 'kwargs':kwargs, 'self.attribute':self.attribute}
+
+        # create test case
+        case = TestCase()
+
+        #endregion
+        
+        #region 'success'
+        result = case.test_method("a", 5, "theseAreArgs", x=10, y=None)
+        self.assertEqual(result, {
+            'a':"a", 
+            "b":5, 
+            'args':("theseAreArgs", ), 
+            'kwargs':{'x':10, 'y':None},
+            'self.attribute':999
+            })
+
+        #endregion
+
+        #region 'success: args wrong type'
+        """ should be an success, because args & kwargs are not checked """
+
+        result = case.test_method("a", 5, 555, x=10, y=None)
+        self.assertEqual(result, {
+            'a':"a", 
+            "b":5, 
+            'args':(555, ), 
+            'kwargs':{'x':10, 'y':None},
+            'self.attribute':999
+            })
+
+        #endregion
+
+        #region '[K.2]: b wrong type'
+        result = case.test_method("a", "b", 555, x=10, y=None)
+        self.assertEqual(result['error'], "[K.2]: The parameter 'b' needs to be a(n) int.")
+
+        #endregion
+
+        #region 'success: args missing'
+        """args should not be checked (because only python hints) """
+        result = case.test_method("a", 15, y=None)
+        self.assertEqual(result, {
+            'a':"a", 
+            'b':15,
+            'args':(),
+            'kwargs':{'y':None},
+            'self.attribute':999
+            })
+
+        #endregion
+
+        #region '[A.1]: b missing'
+        result = case.test_method("a", x=10, y=None)
+        self.assertEqual(result['error'], "[K.1]: The parameter 'b' is missing.")
+
+        #endregion
+
+        #endregion
 
 
 

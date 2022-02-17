@@ -67,7 +67,8 @@ class TestSortParameters(unittest.TestCase):
             'args':[],
             'kwargs':{},
             'hinting':{},
-            'declared':["a","b","c"]
+            'declared':["a","b","c"],
+            'self':{'available':False, 'value':None}
         })
         
 
@@ -94,7 +95,8 @@ class TestSortParameters(unittest.TestCase):
             'args':[],
             'kwargs':{},
             'hinting':{},
-            'declared':["a","b","c"]
+            'declared':["a","b","c"],
+            'self':{'available':False, 'value':None}
         })
         
 
@@ -121,7 +123,8 @@ class TestSortParameters(unittest.TestCase):
             'args':[],
             'kwargs':{},
             'hinting':{},
-            'declared':["a","b","c"]
+            'declared':["a","b","c"],
+            'self':{'available':False, 'value':None}
         })
         
 
@@ -150,7 +153,8 @@ class TestSortParameters(unittest.TestCase):
             'args':[],
             'kwargs':{},
             'hinting':{'a':(type(None), int, float, complex, bool, str, list, tuple, dict, set, object), 'b':str, 'c':int},
-            'declared':["a","b","c"]
+            'declared':["a","b","c"],
+            'self':{'available':False, 'value':None}
         })
         
         #endregion
@@ -199,6 +203,32 @@ class TestSortParameters(unittest.TestCase):
         
         #endregion
 
+        #region 'for class method'
+
+        # build class
+        class TestClass:
+
+            def test_method(self:int, a, b:int, c:bool = True) -> dict:
+
+                # get locals
+                loc = locals()
+
+                # run sorting
+                result = sort_parameters(self.test_method, loc, False)
+
+                return result
+
+        
+        # create class case
+        case = TestClass()
+
+        # run function
+        result = case.test_method("123", 123, False)
+        self.assertEqual(result['positional'], {'a':"123", 'b':123, 'c':False})
+        self.assertEqual(result['self']['available'], True)
+
+        #endregion
+
     def test_only_args(self):
         """
         Checks a function with only *args.
@@ -224,12 +254,13 @@ class TestSortParameters(unittest.TestCase):
             'args':(100, 200),
             'kwargs':{},
             'hinting':{},
-            'declared':['args']
+            'declared':['args'],
+            'self':{'available':False, 'value':None}
         })
 
         #endregion
 
-        #region 'without hints'
+        #region 'with hints'
         """ should not add elements to hinted. """
 
         # build function
@@ -250,8 +281,38 @@ class TestSortParameters(unittest.TestCase):
             'args':(100, 200),
             'kwargs':{},
             'hinting':{},
-            'declared':['args']
+            'declared':['args'],
+            'self':{'available':False, 'value':None}
         })
+
+        #endregion
+
+        #region 'test class method'
+        # build class
+        class TestClass:
+
+            def __init__(self):
+
+                self.attribute = "attribute"
+
+            def test_method(self, *args) -> dict:
+
+                # get locals
+                loc = locals()
+
+                # run sorting
+                result = sort_parameters(self.test_method, loc, False)
+
+                return result
+
+        
+        # create class case
+        case = TestClass()
+
+        # run function
+        result = case.test_method("123", 123, False)
+        self.assertEqual(result['args'], ("123", 123, False))
+        self.assertEqual(result['self']['available'], True)
 
         #endregion
 
@@ -277,12 +338,13 @@ class TestSortParameters(unittest.TestCase):
             'args':[],
             'kwargs':{'c':100,'pp':"something", 'theta':.1},
             'hinting':{},
-            'declared':['kwargs']
+            'declared':['kwargs'],
+            'self':{'available':False, 'value':None}
         })
 
         #endregion
 
-        #region 'without hints'
+        #region 'with hints'
         """ should not add elements to hinted. """
 
         # build function
@@ -303,8 +365,34 @@ class TestSortParameters(unittest.TestCase):
             'args':[],
             'kwargs':{'a':100, 'z':200},
             'hinting':{},
-            'declared':['kwargs']
+            'declared':['kwargs'],
+            'self':{'available':False, 'value':None}
         })
+
+        #endregion
+
+        #region 'test class method'
+        # build class
+        class TestClass:
+
+            def test_method(self, **kwargs) -> dict:
+
+                # get locals
+                loc = locals()
+
+                # run sorting
+                result = sort_parameters(self.test_method, loc, False)
+
+                return result
+
+        
+        # create class case
+        case = TestClass()
+
+        # run function
+        result = case.test_method(z="123", p=123, q=False, y={})
+        self.assertEqual(result['kwargs'], {'z':"123", 'p':123, 'q':False, 'y':{}})
+        self.assertTrue(result['self']['available'])
 
         #endregion
 
@@ -329,7 +417,8 @@ class TestSortParameters(unittest.TestCase):
             'args':(400,),
             'kwargs':{'k':"something"},
             'hinting':{},
-            'declared':['a', 'b', 'c', 'kwargs', 'args']
+            'declared':['a', 'b', 'c', 'kwargs', 'args'],
+            'self':{'available':False, 'value':None}
         })
 
         #endregion
@@ -352,7 +441,8 @@ class TestSortParameters(unittest.TestCase):
             'args':(400,),
             'kwargs':{'k':"something"},
             'hinting':{},
-            'declared':['a', 'b', 'c', 'kwargs', 'args']
+            'declared':['a', 'b', 'c', 'kwargs', 'args'],
+            'self':{'available':False, 'value':None}
         })
 
         #endregion
@@ -375,7 +465,8 @@ class TestSortParameters(unittest.TestCase):
             'args':(),
             'kwargs':{'k':"something", 'p':13},
             'hinting':{},
-            'declared':['a', 'b', 'c', 'kwargs', 'args']
+            'declared':['a', 'b', 'c', 'kwargs', 'args'],
+            'self':{'available':False, 'value':None}
         })
 
         #endregion
@@ -398,7 +489,8 @@ class TestSortParameters(unittest.TestCase):
             'args':(),
             'kwargs':{'k':"something", 'p':13},
             'hinting':{},
-            'declared':['a', 'b', 'c', 'kwargs', 'args']
+            'declared':['a', 'b', 'c', 'kwargs', 'args'],
+            'self':{'available':False, 'value':None}
         })
 
         #endregion
@@ -421,7 +513,8 @@ class TestSortParameters(unittest.TestCase):
             'args':(),
             'kwargs':{'k':"something", 'p':15},
             'hinting':{},
-            'declared':['a', 'b', 'c', 'kwargs', 'args']
+            'declared':['a', 'b', 'c', 'kwargs', 'args'],
+            'self':{'available':False, 'value':None}
         })
 
         #endregion
@@ -444,7 +537,36 @@ class TestSortParameters(unittest.TestCase):
             'args':(500,500,500,),
             'kwargs':{'Z':"none"},
             'hinting':{'a':int, 'b':None, 'c':dict},
-            'declared':['a', 'b', 'c', 'kwargs', 'args']
+            'declared':['a', 'b', 'c', 'kwargs', 'args'],
+            'self':{'available':False, 'value':None}
         })
+
+        #endregion
+
+        #region 'test class method'
+        # build class
+        class TestClass:
+
+            def test_method(self, a:int, *args:float, **kwargs) -> dict:
+
+                # get locals
+                loc = locals()
+
+                # run sorting
+                result = sort_parameters(self.test_method, loc, False)
+
+                return result
+
+        
+        # create class case
+        case = TestClass()
+
+        # run function
+        result = case.test_method(5, True, z="123", p=123, q=False, y={})
+        self.assertEqual(result['kwargs'], {'z':"123", 'p':123, 'q':False, 'y':{}})
+        self.assertEqual(result['args'], (True,))
+        self.assertEqual(result['positional'], {'a':5})
+        self.assertEqual(result['declared'], ["a", "kwargs", "args"])
+        self.assertTrue(result['self']['available'])
 
         #endregion

@@ -850,10 +850,14 @@ def tcheasy(to_check:dict = {}, debug:bool = False) -> typing.Any:
             if debug: print("MOD:", sortedParams)
 
             # if checks did pass:
-            # build args and kwargs for passing purpose. CAUTION: bring 'positional' in the correct
-            # order first (by using declared!)
+            # build args and kwargs for passing purpose. 
+            # CAUTION: bring 'positional' in the correct order first
+            # (by using declared!)
             modArgs = tuple([sortedParams['positional'][key] for key in sortedParams['declared'] if key not in ['args', 'kwargs']] + list(sortedParams['args']))
             modKwargs = sortedParams['kwargs']
+
+            # CAUTION2: add 'self' if the function is a class method
+            if sortedParams['self']['available']: modArgs = (sortedParams['self']['value'], *modArgs)
 
             if debug: print("MOD ARGS:", modArgs)
             if debug: print("MOD KWARGS:", modKwargs)

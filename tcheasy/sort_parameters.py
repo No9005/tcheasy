@@ -83,13 +83,49 @@ def sort_parameters(func, loc:dict, decorated=True) -> dict:
                 'args':list,
                 'kwargs':dict,
                 'hinting':dict,
-                'defined':list
+                'defined':list,
+                'self':dict
             }
     
     """
 
     # get full arg spec
     iArgs, iVarargs, iVarkw, iDefaults, iKwonlyargs, iKwonlydefaults, iAnnotations = inspect.getfullargspec(func)
+
+    # is self within the iArgs?
+    selfData = {'available':False, 'value':None}
+    
+    if "self" in iArgs:
+
+        # differenciate between 'decorated' or not
+        if decorated:
+            """
+            CAUTION:
+            If the function was decorated, the 'self' parameter
+            is within the loc['args'] list.
+            Else its a keyword within the loc.
+
+            In the first case, we have to get rid of the
+            first element of the loc['args'] list (because
+            its the passed 'self'.)
+            In the second case, we have to get the 'self'
+            value from the locs.
+            
+            In both cases, we have to delete the 'self'
+            element in iArgs.
+
+            """
+
+            # grab self data
+            selfData = {'available':True, 'value':loc['args'][0]}
+
+            # modify the loc['args'] list
+            loc['args'] = loc['args'][1:]
+
+        else: selfData = {'available':True, 'value':loc['self']}
+
+        # kill self
+        iArgs = [element for element in iArgs if element != "self"]
 
     # get basic positionals
     # locals() show all variables in the local scope
@@ -154,7 +190,7 @@ def sort_parameters(func, loc:dict, decorated=True) -> dict:
     if bool(iAnnotations):
         for key in iAnnotations:
             
-            if key not in ["return", "args", "kwargs"]:
+            if key not in ["return", "args", "kwargs", "self"]:
                 # differenciate between typing.Union, typing.Any and others
                 if typing.get_origin(iAnnotations[key]) == typing.Union: trueAnnotations.update({key:typing.get_args(iAnnotations[key])})
                 elif str(iAnnotations[key]) == "typing.Any": trueAnnotations.update({key:_convert_any()})
@@ -169,7 +205,8 @@ def sort_parameters(func, loc:dict, decorated=True) -> dict:
         'args':copy.deepcopy(trueArgs),
         'kwargs':copy.deepcopy(trueKwargs),
         'hinting':copy.deepcopy(trueAnnotations),
-        'declared':declared
+        'declared':declared,
+        'self':selfData
         }
 
     return complete

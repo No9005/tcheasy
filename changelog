@@ -1,6 +1,13 @@
+v.1.1.0: Support for 'self'. See changelog.
+    - general: The prior version was not able to
+               recognize 'self' in python classes.
+               This version adds the support to 
+               process passed 'self' attributes
+               correctly.
+               
+------ old versions ---------------------------------------------
 v.1.0.1: minor changes for pipy.
 
------- old versions ---------------------------------------------
 v.1.0.0: tcheasy v1!... and Abfahrt!
 
 v.0.0.1: Added examples & README changes.

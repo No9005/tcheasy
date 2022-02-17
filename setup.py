@@ -33,7 +33,7 @@ if __name__ == "__main__":
         author="Daniel Kiermeier",
         author_email="d.kiermeier@layers-of-life.com",
         url="https://github.com/No9005/tcheasy",
-        download_url="https://github.com/No9005/tcheasy/archive/refs/tags/v.1.0.1.tar.gz",
+        download_url="https://github.com/No9005/tcheasy/archive/refs/tags/v.1.1.0.tar.gz",
         license="MIT",
         package_dir={
             "tcheasy":tcheasyPath
